@@ -13,4 +13,9 @@ public class TempControllerTest {
         return "/home.html";
     }
 
+    @GetMapping("/temp/jsp")
+    public String tempJsp(){
+        System.out.println("start!");
+        return "/index";
+    }
 }
