@@ -27,8 +27,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 해당 프로젝트에서 연결된 데이터베이스의 넘버링 전략을 따라갑니다.
     private int id; // 시퀀스, auto-increment
 
-    @Column(nullable = false, length = 30)
-    private String username;
+    @Column(nullable = false, length = 30, unique = true)
+    private String username; //중복된 username이 들어가서는 안됩니다.[unique한 value 여야한다?...-> 사용자 이름은 중복이 될 수 있지 않을까?]
 
     @Column(nullable = false, length = 100) // 암호화 된 비밀번호를 데이터베이스에 넣기 위해서 길게 잡는다.
     private String password;
