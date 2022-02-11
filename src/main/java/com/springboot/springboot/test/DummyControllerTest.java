@@ -20,6 +20,32 @@ public class DummyControllerTest {
     @Autowired // DummyControllerTest가 메모리에 뜰 때 UserRepository도 같이 메모리에 뜹니다.
     private UserRepository userRepository;
 
+    // - save() 메소드 특성
+    // 1. save 함수는 id를 전달하지 않는 경우, insert를 실행합니다.
+    // 2. save 함수는 id를 전달 후 해당 id에 대한 데이터가 있으면 update를 해줍니다.
+    // 3. save 함수는 id를 전달 후 해당 id에 대한 데이터가 없으면 insert를 해줍니다.
+
+    @PutMapping("/dummy/user/{id}")                                              // MessageConverter의 Jackson 라이브러리가 변환해서 받아줍니다.
+    public User updateUser(@PathVariable int id, @RequestBody User requestUser){ // json 데이터를 요청했는데 spring이 자바 오브젝트로 반환해서 보내줌.
+
+        // password, email 수정
+        System.out.println("id: "+id);
+        System.out.println("password: "+ requestUser.getPassword());
+        System.out.println("email: "+requestUser.getEmail());
+
+        User user = userRepository.findById(id).orElseThrow(()->{
+            return new IllegalArgumentException("수정에 실패하였습니다.");
+        });
+
+        user.setPassword(requestUser.getPassword());
+        user.setEmail(requestUser.getEmail());
+
+        userRepository.save(user);
+
+        return null;
+
+    }
+
     @GetMapping("/dummy/users")
     public List<User> list(){
         // findAll(): 전체가 리턴이 됩니다.
