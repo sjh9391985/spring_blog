@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -18,12 +19,13 @@ import java.sql.Timestamp;
 @Data
 // ORM 은 Object를 테이블로 매핑해주는 역할을 합니다.
 @Entity // User model 이 스프링 부트 프로젝트가 실행될 때 읽어서 자동으로 mysql에 테이블이 생성됩니다.
+//@DynamicInsert Insert 시 null 인 값들은 제외시켜서 INSERT 시켜줍니다.
 public class User {
 
     // Long type 은 많은 유저가 있을 경우 사용.
     @Id // primary Key
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 해당 프로젝트에서 연결된 데이터베이스의 넘버링 전략을 따라갑니다.
-    private Long id; // 시퀀스, auto-increment
+    private int id; // 시퀀스, auto-increment
 
     @Column(nullable = false, length = 30)
     private String username;
@@ -34,8 +36,9 @@ public class User {
     @Column(nullable = false, length = 50)
     private String email;
 
-    @ColumnDefault("'user'")
-    private String role; //Enum을 쓰는게 좋다. admin, user, manager 을 통해 권한을 준다.
+    //@ColumnDefault("'user'")
+    @Enumerated(EnumType.STRING) // DB는 ROLETYPE란게 없으므로 해당 타입이 String 이란것을 명시해줘야한다.
+    private RoleType role; //Enum을 쓰는게 좋다. ADMIN, USER, MANAGER 을 통해 권한을 준다.
 
     @CreationTimestamp // 시간이 자동 입력
     private Timestamp createDate;
