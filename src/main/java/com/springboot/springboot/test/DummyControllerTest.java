@@ -4,10 +4,12 @@ import com.springboot.springboot.model.RoleType;
 import com.springboot.springboot.model.User;
 import com.springboot.springboot.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,6 +27,7 @@ public class DummyControllerTest {
     // 2. save 함수는 id를 전달 후 해당 id에 대한 데이터가 있으면 update를 해줍니다.
     // 3. save 함수는 id를 전달 후 해당 id에 대한 데이터가 없으면 insert를 해줍니다.
 
+    @Transactional
     @PutMapping("/dummy/user/{id}")                                              // MessageConverter의 Jackson 라이브러리가 변환해서 받아줍니다.
     public User updateUser(@PathVariable int id, @RequestBody User requestUser){ // json 데이터를 요청했는데 spring이 자바 오브젝트로 반환해서 보내줌.
 
@@ -42,8 +45,17 @@ public class DummyControllerTest {
 
         userRepository.save(user);
 
-        return null;
+        return user;
+    }
 
+    @DeleteMapping("/dummy/user/{id}")
+    public String deleteUser(@PathVariable int id){
+        try {
+            userRepository.deleteById(id);
+            return id+"번 아이디가 삭제되었습니다.";
+        } catch (EmptyResultDataAccessException exception){
+            return "삭제에 실패하였습니다 " + id +"는 없는 아이디 정보입니다. 예외에 대한 사유입니다: "+exception ;
+        }
     }
 
     @GetMapping("/dummy/users")
