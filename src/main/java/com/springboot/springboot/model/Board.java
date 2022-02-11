@@ -9,6 +9,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -30,9 +31,12 @@ public class Board {
     @ColumnDefault("0")
     private int count; // 조회수
 
-    @ManyToOne // Board가 many, One은 user를 의미합니다. 하나의 사용자가 여러개의 게시글을 사용할 수 있음.
+    @ManyToOne(fetch = FetchType.EAGER) // Board가 many, One은 user를 의미합니다. 하나의 사용자가 여러개의 게시글을 사용할 수 있음.
     @JoinColumn(name="userId")
     private User user;
+
+    @OneToMany(mappedBy = "board", fetch = FetchType.LAZY) // 하나의 게시글은 여러개의 답변을 가집니다. mappedBy가 있다면 연관관계의 주인이 아닙니다.(foreign key가 아닙니다.)
+    private List<Reply> reply;
 
     @CreationTimestamp
     private Timestamp createDate;
