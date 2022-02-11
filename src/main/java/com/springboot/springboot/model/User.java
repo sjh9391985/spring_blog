@@ -1,12 +1,21 @@
 package com.springboot.springboot.model;
 
 import com.sun.istack.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 
+
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 // ORM 은 Object를 테이블로 매핑해주는 역할을 합니다.
 @Entity // User model 이 스프링 부트 프로젝트가 실행될 때 읽어서 자동으로 mysql에 테이블이 생성됩니다.
 public class User {
