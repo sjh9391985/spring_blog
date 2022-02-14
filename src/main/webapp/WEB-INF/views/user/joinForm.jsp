@@ -4,7 +4,7 @@
 
 <div class="container">
 <h2>회원가입</h2>
-<form action="/action_page.php">
+<form>
 
     <div class="form-group">
       <label for="username">Username:</label>
@@ -17,8 +17,8 @@
     </div>
 
     <div class="form-group">
-        <label for="pwd">Password:</label>
-        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
     </div>
 
     <div class="form-group form-check">
@@ -26,10 +26,9 @@
         <input class="form-check-input" type="checkbox" name="remember"> Remember me
       </label>
     </div>
-
-    <button type="submit" class="btn btn-primary">회원가입 완료</button>
-
   </form>
+  <button id="btn-save" class="btn btn-primary">회원가입 완료</button>
 </div>
 
+<script src="/blog/js/user.js"></script>
 <%@ include file="../layout/footer.jsp" %>
