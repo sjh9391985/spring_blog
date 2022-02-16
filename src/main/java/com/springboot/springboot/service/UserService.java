@@ -14,16 +14,15 @@ public class UserService {
     private UserRepository userRepository;
 
     @Transactional
-    public int join(User user){
-        try{
+    // 전체 성공시 commit , 실패시 rollback
+    public void join(User user){
             userRepository.save(user);
-            return 1;
-        }catch (Exception e){
-            e.printStackTrace();
-            System.out.println("UserService:회원가입: " + e.getMessage());
-        }
-        return -1;
     }
+
+//    @Transactional
+//    public User login(User user){
+//        return userRepository
+//    }
 
 
 }

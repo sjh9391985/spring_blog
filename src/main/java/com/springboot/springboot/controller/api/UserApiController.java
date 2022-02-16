@@ -20,9 +20,15 @@ public class UserApiController {
     public ResponseDto<Integer> save(@RequestBody User user){
         System.out.println("userApiController");
         user.setRole(RoleType.USER);
-        int result = userService.join(user); // 1이면 성공, -1이면 실패
-
+        userService.join(user); // 1이면 성공, -1이면 실패
         return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
+    }
+
+    @PostMapping("/api/user/login")
+    public ResponseDto<Integer> login(@RequestBody User user){
+        System.out.println("login ing@~");
+        User pricipal = userService.login(user);
+        return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
 
 }
