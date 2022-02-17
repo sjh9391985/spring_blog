@@ -18,9 +18,6 @@ public class UserApiController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private HttpSession httpSession;
-
     @PostMapping("/api/user")
     public ResponseDto<Integer> save(@RequestBody User user){
         System.out.println("userApiController");
@@ -29,15 +26,15 @@ public class UserApiController {
         return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
     }
 
-    @PostMapping("/api/user/login")
-    public ResponseDto<Integer> login(@RequestBody User user){
-        System.out.println("login ing@~");
-        User principal = userService.login(user);
-
-        if(principal!=null){
-            httpSession.setAttribute("principal", principal);
-        }
-        return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
-    }
+//    @PostMapping("/api/user/login")
+//    public ResponseDto<Integer> login(@RequestBody User user HttpSession httpSession;){
+//        System.out.println("login ing@~");
+//        User principal = userService.login(user);
+//
+//        if(principal!=null){
+//            httpSession.setAttribute("principal", principal);
+//        }
+//        return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+//    }
 
 }
