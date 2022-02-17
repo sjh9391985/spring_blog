@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,16 +27,29 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/blog/">HOME</a>
+      <a class="navbar-brand" href="/">HOME</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Home</a></li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="/blog/user/joinForm"><span class="glyphicon glyphicon-user"></span>회원가입</a></li>
-        <li><a href="/blog/user/loginForm"><span class="glyphicon glyphicon-log-in"></span>로그인</a></li>
-      </ul>
+
+      <c:choose>
+        <c:when test=" ${empty sessionScope.principal} ">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/board/form"><span class="glyphicon glyphicon-user"></span>글쓰기</a></li>
+                <li><a href="/user/form"><span class="glyphicon glyphicon-log-in"></span>회원정보</a></li>
+                <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span>로그아웃</a></li>
+            </ul>
+        </c:when>
+        <c:otherwise>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/joinForm"><span class="glyphicon glyphicon-user"></span>회원가입</a></li>
+                <li><a href="/loginForm"><span class="glyphicon glyphicon-log-in"></span>로그인</a></li>
+            </ul>
+        </c:otherwise>
+      </c:choose>
+
     </div>
   </div>
 </nav>

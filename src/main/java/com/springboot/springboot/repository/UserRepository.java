@@ -2,6 +2,7 @@ package com.springboot.springboot.repository;
 
 import com.springboot.springboot.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 
 // DAO
@@ -12,5 +13,9 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     // JPA Naming 전략
     // SELECT * FROM user WHERE username = ? AND password =?; 쿼리가 실행이 됩니다.
     User findByUsernameAndPassword(String username, String password);
+
+    // native query를 사용가능합니다.
+    // @Query(value="SELECT * FROM user WHERE username=?1 AND password=?2", nativeQuery = true)
+    // User login(String username, String password)
 
 }
