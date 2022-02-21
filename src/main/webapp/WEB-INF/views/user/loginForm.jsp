@@ -5,7 +5,6 @@
 <div class="container">
 <h2>로그인</h2>
 <form>
-
     <div class="form-group">
       <label for="username">Username:</label>
       <input type="text" class="form-control" id="username" placeholder="Enter username" name="username">
@@ -21,9 +20,9 @@
         <input class="form-check-input" type="checkbox" name="remember"> ID 저장
       </label>
     </div>
-
+    <button id="btn-login" class="btn btn-primary">로그인</button>
   </form>
-  <button id="btn-login" class="btn btn-primary">로그인</button>
+
 </div>
 
 <script src="/js/user.js"></script>
