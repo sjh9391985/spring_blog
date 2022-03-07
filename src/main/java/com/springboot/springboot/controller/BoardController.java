@@ -15,4 +15,9 @@ public class BoardController {
         // WEB-INF/view/{retrun}.jsp
         return "index";
     }
+
+    @GetMapping("/board/saveForm")
+    public String board(){
+        return "/board/saveForm";
+    }
 }

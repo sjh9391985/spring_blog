@@ -2,6 +2,7 @@ package com.springboot.springboot.config.auth;
 
 
 import com.springboot.springboot.model.User;
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -10,6 +11,7 @@ import java.util.Collection;
 
 // spring security가 로그인 요청을 가로채서 로그인 진행 후 완료가 되면 UserDetails 타입의 오브젝트를 스프링 시큐리티의 고유한 세션 저장소에 저장을 합니다.
 // 그때 저장되는것이 PrincipalDetail 입니다.
+@Getter
 public class PrincipalDetail implements UserDetails {
 
     // composition: 객체를 품고 있는것.

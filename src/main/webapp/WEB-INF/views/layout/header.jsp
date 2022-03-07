@@ -21,6 +21,8 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 
 </head>
 <body>
@@ -49,8 +51,8 @@
         </c:when>
         <c:otherwise>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/board/form"><span class="glyphicon glyphicon-user"></span>글쓰기</a></li>
-                <li><a href="/user/form"><span class="glyphicon glyphicon-log-in"></span>회원정보</a></li>
+                <li><a href="/board/saveForm"><span class="glyphicon glyphicon-user"></span>글쓰기</a></li>
+                <li><a href="/user/updateForm"><span class="glyphicon glyphicon-log-in"></span>회원정보</a></li>
                 <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span>로그아웃</a></li>
             </ul>
         </c:otherwise>
