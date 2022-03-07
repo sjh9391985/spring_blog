@@ -25,6 +25,8 @@ public class UserService {
         String encPassword = encoder.encode(rawPassword); // hash 화 된 패스워드.
         user.setPassword(encPassword);
         user.setRole(RoleType.USER);
+
+        System.out.println("회원정보 : " + user);
         userRepository.save(user);
     }
 
