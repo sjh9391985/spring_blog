@@ -40,17 +40,17 @@
       </ul>
 
       <c:choose>
-        <c:when test="${empty principal}">
+        <c:when test='${empty principal}'>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/board/form"><span class="glyphicon glyphicon-user"></span>글쓰기</a></li>
-                <li><a href="/user/form"><span class="glyphicon glyphicon-log-in"></span>회원정보</a></li>
-                <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span>로그아웃</a></li>
+                <li><a href="/auth/joinForm"><span class="glyphicon glyphicon-user"></span>회원가입</a></li>
+                <li><a href="/auth/loginForm"><span class="glyphicon glyphicon-log-in"></span>로그인</a></li>
             </ul>
         </c:when>
         <c:otherwise>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/joinForm"><span class="glyphicon glyphicon-user"></span>회원가입</a></li>
-                <li><a href="/loginForm"><span class="glyphicon glyphicon-log-in"></span>로그인</a></li>
+                <li><a href="/board/form"><span class="glyphicon glyphicon-user"></span>글쓰기</a></li>
+                <li><a href="/user/form"><span class="glyphicon glyphicon-log-in"></span>회원정보</a></li>
+                <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span>로그아웃</a></li>
             </ul>
         </c:otherwise>
       </c:choose>

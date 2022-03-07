@@ -6,6 +6,7 @@ import com.springboot.springboot.model.User;
 import com.springboot.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,8 +21,6 @@ public class UserApiController {
 
     @PostMapping("/auth/joinProc")
     public ResponseDto<Integer> save(@RequestBody User user){
-        System.out.println("userApiController");
-        user.setRole(RoleType.USER);
         userService.join(user); // 1이면 성공, -1이면 실패
         return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
     }
@@ -37,5 +36,6 @@ public class UserApiController {
 //        }
 //        return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 //    }
+
 
 }
