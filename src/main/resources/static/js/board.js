@@ -3,9 +3,11 @@ let index = {
         $("#btn-save").on("click", () => {
             this.save();
         });
-//        $("#btn-login").on("click", () => {
-//            this.login();
-//        });
+
+        $("#btn-delete").on("click", () => {
+            this.deleteById();
+        });
+
     },
 
     save: function(){
@@ -28,7 +30,23 @@ let index = {
             }).fail(function(error){
                 alert(JSON.stringify(error));
             }); // ajax 통신을 통해서 3개의 데이터를 json으로 변경하여 insert 호출을 할 예졍
-        }
+        },
+    deleteById: function(){
+
+            let id = $("#id").text();
+
+            //ajax 호출시 default가 비동기 호출.
+            $.ajax({
+                type: "DELETE",
+                url: "/api/board/"+id,
+                dataType: "json", // 요청을 서버로해서 응답이 왔을 때 기본적으로 모든 것이 문자열(String) 인데 모양이 json 이라면 JS 오브젝트로 변경을 해줍니다.
+                }).done(function(response){
+                    alert("삭제가 완료되었습니다.");
+                    location.href = "/";
+                }).fail(function(error){
+                    alert(JSON.stringify(error));
+                }); // ajax 통신을 통해서 3개의 데이터를 json으로 변경하여 insert 호출을 할 예졍
+            }
     }
 
 index.init();
