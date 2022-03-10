@@ -2,19 +2,19 @@
 <%@ include file="../layout/header.jsp" %>
 <div class="container">
     <form>
+        <input type="hidden" id="id" value="${board.id}" />
         <div class="form-group">
           <label for="title">TITLE</label>
-          <input type="text" class="form-control" id="title" placeholder="Enter title" >
+          <input value='${board.title}' type="text" class="form-control" id="title" placeholder="Enter title" >
         </div>
 
         <div class="form-group">
           <label for="content">Content</label>
-          <textarea id="content" rows="5" class="form-control summernote"></textarea>
+          <textarea id="content" rows="5" class="form-control summernote">${board.content}</textarea>
         </div>
+    </form>
 
-      </form>
-
-      <button id="btn-save" class="btn btn-primary">save</button>
+      <button id="btn-update" class="btn btn-primary">수정완료</button>
 </div>
     <script>
       $('.summernote').summernote({
